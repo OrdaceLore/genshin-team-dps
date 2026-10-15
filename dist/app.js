@@ -24,14 +24,13 @@ const board=document.getElementById('board'),count=document.getElementById('coun
 const search=document.getElementById('search'),sort=document.getElementById('sort');
 const modeButton=document.getElementById('modeButton'),passwordButton=document.getElementById('passwordButton');
 const addButton=document.getElementById('addButton');
+const editHint=document.getElementById('editHint');
 const loginDialog=document.getElementById('loginDialog'),editDialog=document.getElementById('editDialog'),passwordDialog=document.getElementById('passwordDialog');
 const loginForm=document.getElementById('loginForm'),editForm=document.getElementById('editForm'),passwordForm=document.getElementById('passwordForm');
-const messageDialog=document.getElementById('messageDialog'),messageForm=document.getElementById('messageForm');
-const messageButtons={editor:document.getElementById('editEditorMessage'),developer:document.getElementById('editDeveloperMessage')};
 const messageFields={editor:document.getElementById('editorMessage'),developer:document.getElementById('developerMessage')};
 const overlays=new Map();
 const builtInIds=new Set(rows.map(row=>row.main));
-let role=null,editingId=null,editingMessage=null;
+let role=null,editingId=null;
 
 function baseData(x){
   const members=x.comp.split('/').map(s=>s.trim()).slice(1,4);
@@ -44,12 +43,80 @@ function current(x){return {...baseData(x),...(overlays.get(x.main)?.data||{}),i
   frozen:Boolean(overlays.get(x.main)?.frozen),otherVideos:x.otherVideos||[]};}
 function tagClass(tag){return tag.includes('大月卡')||tag.includes('纪行')?'paid':
   tag.includes('级')||tag.includes('精 ') ?'special':'';}
+function canEdit(x){return Boolean(role)&&(!x.frozen||role==='developer');}
+function entryPayload(x){
+  return {main:x.main,team:x.team,released:x.released,members:[...x.members],
+    tags:[...x.tags],detail:x.detail,author:x.author,dps:x.dps,url:x.url};
+}
+async function saveField(x,field,value){
+  const data=entryPayload(x);
+  if(field.startsWith('member:')) data.members[Number(field.slice(7))]=value.trim();
+  else if(field.startsWith('tag:')){
+    const index=Number(field.slice(4));
+    if(value.trim())data.tags[index]=value.trim();else data.tags.splice(index,1);
+  }else if(field==='newTag'){
+    if(value.trim())data.tags.push(value.trim());
+  }else if(field==='dps')data.dps=value.trim()===''?null:Number(value);
+  else data[field]=value.trim();
+  await api('/entries/'+encodeURIComponent(x.id),{method:'PUT',body:JSON.stringify(data)});
+  await loadBoard();
+}
+let activeInline=false;
+function inlineField(x,field,label,display,value,options={}){
+  const span=document.createElement('span');
+  span.textContent=display||options.placeholder||'';
+  if(!canEdit(x))return span;
+  span.className='inline-field'+(options.className?' '+options.className:'');
+  span.tabIndex=0;span.setAttribute('role','button');
+  span.setAttribute('aria-label','编辑'+label);
+  span.title='点击编辑'+label;
+  const begin=()=>{
+    if(activeInline)return;
+    activeInline=true;
+    const input=document.createElement(options.multiline?'textarea':'input');
+    if(!options.multiline)input.type=options.type||'text';
+    input.className='inline-input';
+    input.value=value??'';
+    input.placeholder=options.placeholder||label;
+    input.maxLength=options.maxLength||250;
+    input.setAttribute('aria-label',label);
+    span.replaceWith(input);
+    input.focus();input.select();
+    let done=false;
+    const finish=async(commit)=>{
+      if(done)return;done=true;
+      if(!commit||input.value===(value??'')){activeInline=false;input.replaceWith(span);return;}
+      input.disabled=true;
+      try{await saveField(x,field,input.value)}
+      catch(error){input.replaceWith(span);alert(error.message)}
+      finally{activeInline=false}
+    };
+    input.addEventListener('blur',()=>finish(true));
+    input.addEventListener('keydown',event=>{
+      if(event.key==='Escape'){event.preventDefault();finish(false)}
+      else if(event.key==='Enter'&&(!options.multiline||event.ctrlKey||event.metaKey)){
+        event.preventDefault();finish(true)
+      }
+    });
+  };
+  span.addEventListener('click',begin);
+  span.addEventListener('keydown',event=>{
+    if(event.key==='Enter'||event.key===' '){event.preventDefault();begin()}
+  });
+  return span;
+}
 function updateMode(){
   modeButton.textContent=role?(role==='developer'?'开发者模式 · 退出':'编辑模式 · 退出'):'启用编辑模式';
   passwordButton.hidden=role!=='developer';
   addButton.hidden=!role;
-  messageButtons.editor.hidden=!role;
-  messageButtons.developer.hidden=role!=='developer';
+  editHint.hidden=!role;
+  for(const owner of ['editor','developer']){
+    const allowed=Boolean(role)&&(owner==='editor'||role==='developer');
+    messageFields[owner].classList.toggle('inline-field',allowed);
+    messageFields[owner].tabIndex=allowed?0:-1;
+    if(allowed)messageFields[owner].setAttribute('role','button');
+    else messageFields[owner].removeAttribute('role');
+  }
   render();
 }
 async function api(path,options={}){
@@ -84,29 +151,75 @@ function render(){
   const max=Math.max(...selected.map(x=>x.dps||0),1);let ranked=0;
   selected.forEach((x,index)=>{
     const el=document.createElement('article');el.className='row';
-    el.innerHTML='<div class="rank"></div><div class="primary"><div class="team"></div><div class="subtitle"></div><div class="details"><div class="tags"></div><div class="note"></div><div class="extras"></div><div class="manage"></div></div></div><div class="valuebox"><div class="value"></div><div class="bar"><i></i></div></div><a class="video" target="_blank" rel="noopener noreferrer">B 站原视频 ↗</a>';
+    el.innerHTML='<div class="rank"></div><div class="primary"><div class="team"></div><div class="subtitle"></div><div class="details"><div class="tags"></div><div class="note"></div><div class="extras"></div><div class="manage"></div></div></div><div class="valuebox"><div class="value"></div><div class="bar"><i></i></div></div><div class="video-group"></div>';
     const rank=el.querySelector('.rank');
     if(sort.value==='release')rank.textContent=String(index+1).padStart(2,'0');
     else if(x.dps!=null){rank.textContent=String(++ranked).padStart(2,'0');if(ranked<=3)rank.classList.add('top3')}
     else{rank.textContent='·';rank.classList.add('none')}
-    el.querySelector('.team').textContent=x.main+' · '+x.team;
-    el.querySelector('.subtitle').textContent=x.members.filter(Boolean).join(' / ')+(sort.value==='release'?' · '+x.released+' 实装':'');
+    const title=el.querySelector('.team');
+    title.append(inlineField(x,'main','角色名',x.main,x.main,{maxLength:40}),' · ',
+      inlineField(x,'team','反应',x.team,x.team,{maxLength:40}));
+    const subtitle=el.querySelector('.subtitle');
+    x.members.forEach((member,memberIndex)=>{
+      if(!member&&!canEdit(x))return;
+      if(subtitle.childNodes.length)subtitle.append(' / ');
+      subtitle.append(inlineField(x,'member:'+memberIndex,'队伍成员 '+(memberIndex+1),
+        member,member,{placeholder:'+ 队友',maxLength:40}));
+    });
+    if(sort.value==='release'||canEdit(x)){
+      if(subtitle.childNodes.length)subtitle.append(' · ');
+      subtitle.append(inlineField(x,'released','角色发布时间',x.released+' 实装',
+        x.released,{type:'date',maxLength:10}));
+    }
     const tags=el.querySelector('.tags');
-    x.tags.forEach(t=>{const span=document.createElement('span');span.className='pill '+tagClass(t);span.textContent=t;tags.append(span)});
-    el.querySelector('.note').textContent=[x.author,x.detail].filter(Boolean).join(' · ');
+    x.tags.forEach((t,tagIndex)=>{
+      const item=inlineField(x,'tag:'+tagIndex,'标签备注',t,t,{maxLength:80});
+      item.classList.add('pill');
+      const variant=tagClass(t);if(variant)item.classList.add(variant);
+      tags.append(item);
+    });
+    if(canEdit(x)){
+      const add=inlineField(x,'newTag','新标签','+ 标签','',{maxLength:80});
+      add.classList.add('add-tag');tags.append(add);
+    }
+    const note=el.querySelector('.note');
+    if(x.author||canEdit(x))note.append(inlineField(x,'author','视频作者',x.author,x.author,
+      {placeholder:'+ 作者',maxLength:80}));
+    if((x.author||canEdit(x))&&(x.detail||canEdit(x)))note.append(' · ');
+    if(x.detail||canEdit(x))note.append(inlineField(x,'detail','文字备注',x.detail,x.detail,
+      {placeholder:'+ 备注',maxLength:600,multiline:true}));
     const extras=el.querySelector('.extras');
     x.otherVideos.forEach(([label,url])=>{const link=document.createElement('a');link.href=url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=label+' ↗';extras.append(link)});
     const value=el.querySelector('.value'),bar=el.querySelector('.bar');
-    if(x.dps!=null){value.innerHTML=x.dps.toFixed(2).replace(/0$/,'')+' <small>万 DPS</small>';bar.querySelector('i').style.width=(x.dps/max*100)+'%'}
-    else{value.textContent='未提供 DPS';value.classList.add('missing');bar.remove()}
-    const link=el.querySelector('.video');
-    if(x.url){link.href=x.url;link.setAttribute('aria-label','观看 '+x.main+' 的 B 站原视频')}else link.remove();
+    if(x.dps!=null){
+      value.append(inlineField(x,'dps','DPS',x.dps.toFixed(2).replace(/0$/,''),String(x.dps),
+        {type:'number',maxLength:12}),' ');
+      const unit=document.createElement('small');unit.textContent='万 DPS';value.append(unit);
+      bar.querySelector('i').style.width=(x.dps/max*100)+'%';
+    }else{
+      value.append(inlineField(x,'dps','DPS','未提供 DPS','',{type:'number',maxLength:12}));
+      value.classList.add('missing');bar.remove();
+    }
+    const videoGroup=el.querySelector('.video-group');
+    if(canEdit(x)){
+      const videoEdit=inlineField(x,'url','B 站视频链接',x.url?'B 站原视频':'添加视频链接',
+        x.url,{type:'url',maxLength:250});
+      videoEdit.classList.add('video');videoGroup.append(videoEdit);
+      if(x.url){
+        const open=document.createElement('a');open.href=x.url;open.target='_blank';
+        open.rel='noopener noreferrer';open.className='video-open';
+        open.textContent='↗';open.setAttribute('aria-label','观看 '+x.main+' 的 B 站原视频');
+        videoGroup.append(open);
+      }
+    }else if(x.url){
+      const link=document.createElement('a');link.href=x.url;link.target='_blank';
+      link.rel='noopener noreferrer';link.className='video';
+      link.textContent='B 站原视频 ↗';link.setAttribute('aria-label','观看 '+x.main+' 的 B 站原视频');
+      videoGroup.append(link);
+    }else videoGroup.remove();
     const manage=el.querySelector('.manage');
     if(role){
-      if(!x.frozen||role==='developer'){
-        const edit=document.createElement('button');edit.type='button';edit.className='action';edit.textContent='编辑角色';
-        edit.addEventListener('click',()=>openEdit(x));manage.append(edit);
-      }else{
+      if(x.frozen&&role!=='developer'){
         const frozen=document.createElement('span');frozen.className='frozen-label';frozen.textContent='此角色已冻结';manage.append(frozen);
       }
       if(role==='developer'){
@@ -123,17 +236,6 @@ function render(){
     board.append(el);
   });
 }
-function openEdit(x){
-  editingId=x.id;
-  document.getElementById('editHeading').textContent='编辑 '+x.main;
-  for(const name of ['main','team','released','detail','author','url'])
-    editForm.elements[name].value=x[name]||'';
-  for(let i=0;i<3;i++)editForm.elements['member'+(i+1)].value=x.members[i]||'';
-  editForm.elements.tags.value=x.tags.join('\n');
-  editForm.elements.dps.value=x.dps??'';
-  document.getElementById('editError').textContent='';
-  editDialog.showModal();
-}
 addButton.addEventListener('click',()=>{
   editingId=null;editForm.reset();
   document.getElementById('editHeading').textContent='新增角色';
@@ -147,21 +249,38 @@ modeButton.addEventListener('click',async()=>{
   loginForm.reset();document.getElementById('loginError').textContent='';loginDialog.showModal();
 });
 passwordButton.addEventListener('click',()=>{passwordForm.reset();document.getElementById('passwordError').textContent='';passwordDialog.showModal()});
-for(const owner of ['editor','developer'])messageButtons[owner].addEventListener('click',()=>{
-  editingMessage=owner;
-  document.getElementById('messageHeading').textContent=owner==='editor'?'致读者的话':'致编辑的话';
-  document.getElementById('messageText').value=messageFields[owner].textContent;
-  document.getElementById('messageError').textContent='';
-  messageDialog.showModal();
-});
-messageForm.addEventListener('submit',async event=>{
-  event.preventDefault();
-  const error=document.getElementById('messageError');error.textContent='';
-  try{const data=await api('/messages/'+editingMessage,{method:'PUT',
-      body:JSON.stringify({message:document.getElementById('messageText').value})});
-    messageFields[editingMessage].textContent=data.message;messageDialog.close()}
-  catch(e){error.textContent=e.message}
-});
+for(const owner of ['editor','developer']){
+  const field=messageFields[owner];
+  const begin=()=>{
+    if(activeInline||!role||(owner==='developer'&&role!=='developer'))return;
+    activeInline=true;
+    const original=field.textContent;
+    const textarea=document.createElement('textarea');
+    textarea.className='inline-input message-input';textarea.value=original;
+    textarea.maxLength=2000;textarea.setAttribute('aria-label',owner==='editor'?'致读者的话':'致编辑的话');
+    field.replaceWith(textarea);textarea.focus();
+    let done=false;
+    const finish=async(commit)=>{
+      if(done)return;done=true;
+      if(!commit||textarea.value.trim()===original){activeInline=false;textarea.replaceWith(field);return}
+      textarea.disabled=true;
+      try{const data=await api('/messages/'+owner,{method:'PUT',
+          body:JSON.stringify({message:textarea.value})});
+        field.textContent=data.message;textarea.replaceWith(field)}
+      catch(error){textarea.replaceWith(field);alert(error.message)}
+      finally{activeInline=false}
+    };
+    textarea.addEventListener('blur',()=>finish(true));
+    textarea.addEventListener('keydown',event=>{
+      if(event.key==='Escape'){event.preventDefault();finish(false)}
+      else if(event.key==='Enter'&&(event.ctrlKey||event.metaKey)){event.preventDefault();finish(true)}
+    });
+  };
+  field.addEventListener('click',begin);
+  field.addEventListener('keydown',event=>{
+    if(event.key==='Enter'||event.key===' '){event.preventDefault();begin()}
+  });
+}
 loginForm.addEventListener('submit',async event=>{
   event.preventDefault();
   const error=document.getElementById('loginError');error.textContent='';
