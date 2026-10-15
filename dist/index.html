@@ -4,64 +4,57 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#081323">
-  <meta name="description" content="原神幽境危战常见队伍 DPS 视频索引。五星角色均为零命、全队不携带五星武器，每位主 C 一支队伍，点击查看 B 站原视频。">
+  <meta name="description" content="原神枫丹及之后主 C 的幽境危战常见队伍 DPS 视频索引。五星角色均为零命、全队不携带五星武器，每位主 C 一支队伍，点击查看 B 站原视频。">
   <title>原神标准队伍 DPS 视频榜</title>
   <style>
     :root{font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;color:#edf5ff;background:#081323;font-synthesis:none}
     *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse 800px 500px at 75% -10%,#224776 0,transparent 70%),#081323}a{color:inherit}button,input,select{font:inherit}
     .wrap{width:min(1120px,calc(100% - 36px));margin:auto}.top{padding:28px 0 0;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.08em}.mark{width:32px;height:32px;display:grid;place-items:center;border:1px solid #80d9ef;border-radius:10px;color:#80d9ef;transform:rotate(-8deg)}.top small{color:#91a6bb}
     .hero{padding:72px 0 43px;display:grid;grid-template-columns:1.4fr .6fr;gap:35px;align-items:end}.eyebrow{color:#71d8e8;letter-spacing:.18em;font-size:12px;font-weight:800}.hero h1{font-size:clamp(40px,6vw,72px);line-height:1.06;letter-spacing:-.055em;margin:16px 0 18px}.hero h1 em{font-style:normal;color:#90e6eb}.hero p{color:#a5b8c9;max-width:700px;line-height:1.8;margin:0}.hero-card{padding:23px;background:linear-gradient(140deg,#183457,#102238);border:1px solid #2b5771;border-radius:22px;box-shadow:0 18px 65px #0005}.hero-card .num{font-size:52px;font-weight:850;letter-spacing:-.07em}.hero-card .num span{font-size:21px;color:#81dbe4}.hero-card p{font-size:13px}.micro{color:#80dbe4;font-size:11px;font-weight:800;letter-spacing:.12em}
-    .rules{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.rule{border:1px solid #326176;background:#16334a;color:#c4eff0;border-radius:999px;font-size:12px;font-weight:750;padding:8px 12px}.controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #284054;padding:23px 0}.search{background:#132438;color:#e8f5ff;border:1px solid #30475b;border-radius:10px;padding:11px 14px;width:min(350px,100%)}.search::placeholder{color:#7f9bb0}.filter,.sort{color:#9fb3c4;font-size:13px}.filter select,.sort select{background:#132438;color:#e8f5ff;border:1px solid #30475b;border-radius:8px;padding:8px}.meta{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#8faabe;font-size:13px;margin:0 0 12px}.meta strong{color:#eaf6ff}
+    .rules{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.rule{border:1px solid #326176;background:#16334a;color:#c4eff0;border-radius:999px;font-size:12px;font-weight:750;padding:8px 12px}.controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #284054;padding:23px 0}.search{background:#132438;color:#e8f5ff;border:1px solid #30475b;border-radius:10px;padding:11px 14px;width:min(350px,100%)}.search::placeholder{color:#7f9bb0}.sort{color:#9fb3c4;font-size:13px}.sort select{background:#132438;color:#e8f5ff;border:1px solid #30475b;border-radius:8px;padding:8px}.meta{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#8faabe;font-size:13px;margin:0 0 12px}.meta strong{color:#eaf6ff}
     .board{display:grid;gap:10px}.row{display:grid;grid-template-columns:49px minmax(0,1fr) 190px 124px;align-items:center;gap:15px;padding:20px 22px;background:#102238;border:1px solid #25415a;border-radius:16px;transition:.2s}.row:hover{background:#17314b;border-color:#4c99ae;transform:translateY(-2px)}.rank{font-size:24px;color:#7ec9d7;font-weight:850}.rank.top3{color:#f5ca82}.rank.none{color:#4d7489}.team{font-size:19px;font-weight:800}.subtitle,.note{color:#91aabe;font-size:12px;line-height:1.55;margin-top:5px}.pill{display:inline-block;padding:5px 8px;border-radius:6px;background:#254356;color:#ace6e8;font-size:11px;font-weight:700;margin:0 5px 5px 0}.pill.paid{background:#5a4035;color:#ffd8a8}.pill.special{background:#423e61;color:#d9d2ff}.value{font-size:25px;font-weight:850;text-align:right;white-space:nowrap}.value small{font-size:13px;color:#a2b8c8}.value.missing{font-size:13px;font-weight:700;color:#91aabe}.bar{height:5px;background:#25425a;border-radius:5px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#55bbce,#e7ca8d);border-radius:5px}.video{justify-self:end;display:inline-flex;align-items:center;gap:7px;color:#9be8ee;text-decoration:none;font-size:13px;font-weight:700;border:1px solid #397584;padding:10px 12px;border-radius:9px;white-space:nowrap}.video:hover{background:#21475a}.empty{padding:30px;color:#9ab0c2;text-align:center}
     .info{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:38px 0 64px}.panel{border:1px solid #29435b;background:#0e2033;border-radius:16px;padding:24px}.panel h2{font-size:17px;margin:0 0 12px}.panel p,.panel li{color:#a9bdcb;font-size:13px;line-height:1.8}.panel ul{padding-left:19px;margin:0}.footer{border-top:1px solid #263d50;padding:20px 0 38px;color:#7995a9;font-size:12px}
-    @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:58px}.hero-card{display:none}.row{grid-template-columns:35px 1fr auto;gap:12px}.primary{grid-column:2/4;grid-row:1}.valuebox{grid-column:2/4;grid-row:2;justify-self:start}.value{text-align:left}.video{grid-column:2/4;grid-row:3;justify-self:start}.info{grid-template-columns:1fr}}@media(max-width:480px){.top small{display:none}.row{padding:17px}.team{font-size:17px}.value{font-size:21px}.controls{align-items:flex-start}.filter,.sort{width:100%}.filter select,.sort select{width:100%;margin-top:5px}}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:58px}.hero-card{display:none}.row{grid-template-columns:35px 1fr auto;gap:12px}.primary{grid-column:2/4;grid-row:1}.valuebox{grid-column:2/4;grid-row:2;justify-self:start}.value{text-align:left}.video{grid-column:2/4;grid-row:3;justify-self:start}.info{grid-template-columns:1fr}}@media(max-width:480px){.top small{display:none}.row{padding:17px}.team{font-size:17px}.value{font-size:21px}.controls{align-items:flex-start}.sort{width:100%}.sort select{width:100%;margin-top:5px}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header class="top"><div class="brand"><span class="mark">✦</span> TEYVAT / DPS INDEX</div><small>视频实测 · 原片可溯源</small></header>
-    <section class="hero"><div><div class="eyebrow">GENSHIN IMPACT · STYGIAN ONSLAUGHT</div><h1>原神标准队伍<br><em>DPS 视频榜</em></h1><p>幽境危战常见队伍，一位主 C 只列一支队伍。已确认符合标准配置的实测成绩优先排列；点击条目可到 B 站核对原片。</p><div class="rules"><span class="rule">五星角色全部 C0</span><span class="rule">全队不带五星武器</span><span class="rule">四星命座不限</span><span class="rule">零能量冷启动 · 120 秒</span></div></div><div class="hero-card"><div class="micro">当前收录</div><div class="num" id="total">—</div><p>同一列表包含常见队伍及原视频；尚无合口径数据的条目会明确标注。</p></div></section>
+    <section class="hero"><div><div class="eyebrow">GENSHIN IMPACT · STYGIAN ONSLAUGHT</div><h1>原神标准队伍<br><em>DPS 视频榜</em></h1><p>收录枫丹及之后的幽境危战常见主 C，每位只列一支队伍。已确认符合标准配置的实测成绩优先排列；点击条目可到 B 站核对原片。</p><div class="rules"><span class="rule">五星角色全部 C0</span><span class="rule">全队不带五星武器</span><span class="rule">四星命座不限</span><span class="rule">零能量冷启动 · 120 秒</span></div></div><div class="hero-card"><div class="micro">当前收录</div><div class="num" id="total">—</div><p>同一列表包含常见队伍及原视频；尚无合口径数据的条目会明确标注。</p></div></section>
     <main>
-      <div class="controls"><input id="search" class="search" type="search" placeholder="搜索主 C、队伍或武器" aria-label="搜索队伍"><label class="filter">范围 <select id="era"><option value="all">全部队伍</option><option value="new">枫丹及以后</option><option value="old">枫丹以前</option></select></label><label class="sort">排序 <select id="sort"><option value="desc">已收录 DPS 从高到低</option><option value="asc">已收录 DPS 从低到高</option><option value="name">主 C 名称</option></select></label></div>
+      <div class="controls"><input id="search" class="search" type="search" placeholder="搜索主 C、队伍或武器" aria-label="搜索队伍"><label class="sort">排序 <select id="sort"><option value="desc">已收录 DPS 从高到低</option><option value="asc">已收录 DPS 从低到高</option><option value="name">主 C 名称</option></select></label></div>
       <div class="meta"><span id="count"></span><span>单位：万伤害 / 秒</span></div><div class="board" id="board"></div>
       <div class="info"><section class="panel"><h2>榜单口径</h2><ul><li>五星角色全部零命，四星命座不限；全队不带五星武器。四星纪行武器允许，但在条目上显著标出。</li><li>数字仅收录能从原视频核对配置、零能量冷启动及约 120 秒完整循环的成绩；短轴、剧诗加成和幽境速通时间不换算 DPS。</li><li>“最高”指目前收录视频中符合口径的较高实测，不代表所有配队与词条组合的理论极值。</li></ul></section><section class="panel"><h2>读榜说明</h2><p>“暂无合口径 DPS”表示该视频可供查看队伍，但不能据此确认符合本榜标准的数值；它不参与名次。原片可能使用不同命座或武器。</p><p>木桩抗性、角色等级、帧率、圣遗物词条和手法仍可能不同；特殊条件直接标在相关条目。更新：2026 年 10 月 14 日。</p></section></div>
     </main><footer class="footer">玩家整理的视频索引 · 数值与视频归原作者所有 · 非官方强度榜</footer>
   </div>
   <script>
     const rows=[
-      {main:'玛薇卡',team:'超载',comp:'玛薇卡 / 夏沃蕾 / 欧洛伦 / 伊安珊',era:'new',dps:18.44,url:'https://www.bilibili.com/video/BV1g5Vh63EQS/',author:'夜星Wetchin',tags:[['角色 95 级','special']],detail:'原片 1 金配置；95 级成绩不能与 90 级直接等同'},
-      {main:'菲林斯',team:'月感电',comp:'菲林斯 / 伊涅芙 / 少女 / 砂糖',era:'new',dps:17.4,url:'https://www.bilibili.com/video/BV1qx3J6jE7b/',author:'雾夕寒川',tags:[['锻造武器','']],detail:'原片标注严格 3 金；以视频配装与流程为准'},
-      {main:'玛拉妮',team:'魔导蒸发',comp:'玛拉妮 / 魔导队友配置见原片',era:'new',url:'https://www.bilibili.com/video/BV1ArkwBHE2J/',author:'糖醋の排骨',detail:'原片有 120 秒冷启动数据，武器配置尚不足以确认全队合规'},
-      {main:'阿蕾奇诺',team:'融化',comp:'阿蕾奇诺 / 茜特菈莉 / 砂糖 / 班尼特',era:'new',url:'https://www.bilibili.com/video/BV1PnFvzdE2u/',author:'listener021'},
-      {main:'那维莱特',team:'水伤',comp:'那维莱特 / 芙宁娜 / 希诺宁 / 欧洛伦',era:'new',url:'https://www.bilibili.com/video/BV189d9B3E6h/',author:'克营这回永驻'},
-      {main:'克洛琳德',team:'魔导超载',comp:'克洛琳德 / 菲谢尔 / 夏沃蕾 / 杜林',era:'new',url:'https://www.bilibili.com/video/BV17JFLzdEvX/',author:'发条橘儿'},
-      {main:'娜维娅',team:'结晶',comp:'娜维娅 / 队友配置见原片',era:'new',url:'https://www.bilibili.com/video/BV1HNPBzMEU9/',author:'是剑影迷心吖'},
-      {main:'莱欧斯利',team:'星超导',comp:'莱欧斯利 / 队友配置见原片',era:'new',url:'https://www.bilibili.com/video/BV1r9Mg6xEfk/',author:'浪客WAVE'},
-      {main:'林尼',team:'纯火',comp:'林尼 / 班尼特 / 香菱 / 风系队友',era:'new',url:'https://www.bilibili.com/video/BV1A44y1F7JG/',author:'赫箩的苹果'},
-      {main:'嘉明',team:'下落蒸发',comp:'嘉明 / 闲云 / 芙宁娜 / 班尼特',era:'new',url:'https://www.bilibili.com/video/BV195ttz9EsB/',author:'氢氧化氢芙',detail:'幽境实战视频，非木桩循环 DPS'},
-      {main:'恰斯卡',team:'多元素',comp:'恰斯卡 / 队友配置见原片',era:'new',url:'https://www.bilibili.com/video/BV1WxB1YTEwt/',author:'冰糖小堃'},
-      {main:'基尼奇',team:'燃烧',comp:'基尼奇 / 队友配置见原片',era:'new',url:'https://www.bilibili.com/video/BV1ckL46WEyu/',author:'炫耀快玩',detail:'原片含剧诗增益，相关成绩不计入'},
-      {main:'瓦蕾莎',team:'超载',comp:'瓦蕾莎 / 玛薇卡 / 夏沃蕾 / 伊安珊',era:'new',url:'https://www.bilibili.com/video/BV1ymk7BaE7S/',author:'梦游远方2004'},
-      {main:'丝柯克',team:'冰水',comp:'丝柯克 / 爱可菲 / 芙宁娜 / 莫娜',era:'new',url:'https://www.bilibili.com/video/BV1ymk7BaE7S/',author:'梦游远方2004'},
-      {main:'奈芙尔',team:'月绽放',comp:'奈芙尔 / 菈乌玛 / 少女 / 砂糖',era:'new',url:'https://www.bilibili.com/video/BV1ymk7BaE7S/',author:'梦游远方2004'},
-      {main:'兹白',team:'月结晶',comp:'兹白 / 莉奈娅 / 少女 / 叶洛亚',era:'new',url:'https://www.bilibili.com/video/BV1t6DHBAEcM/',author:'糖果味Ooo'},
-      {main:'少女',team:'月感电',comp:'少女 / 伊涅芙 / 砂糖 / 菲谢尔',era:'new',url:'https://www.bilibili.com/video/BV1T2zyBMEbW/',author:'之猫neko',detail:'原片少女 2 命；视频仅供参考手法'},
-      {main:'木偶',team:'星超导',comp:'木偶 / 队友配置见原片',era:'new',dps:10,display:'10+',url:'https://www.bilibili.com/video/BV1yYNs6sEF2/',author:'阿布relax丶',detail:'原作者标注严格 1 金、无隐金；10 万为下限'},
-      {main:'法尔伽',team:'魔导',comp:'法尔伽 / 队友配置见原片',era:'new',url:'https://www.bilibili.com/video/BV1PPftBhEKk/',author:'夜尘明',tags:[['大月卡武器：精 5 螭骨剑','paid']],detail:'原作者明确注明使用精 5 螭骨剑'},
-      {main:'胡桃',team:'蒸发',comp:'胡桃 / 队友配置见原片',era:'old',url:'https://www.bilibili.com/video/BV173a3z4EMp/',author:'Light__Quantum',tags:[['大月卡武器：决斗之枪','paid']]},
-      {main:'魈',team:'下落',comp:'魈 / 珐露珊 / 芙宁娜 / 闲云',era:'old',url:'https://www.bilibili.com/video/BV17Y3tz9E2c/',author:'一只普通的魈厨'},
-      {main:'艾尔海森',team:'激绽',comp:'艾尔海森 / 菈乌玛 / 行秋 / 久岐忍',era:'old',url:'https://www.bilibili.com/video/BV12HWMzCEBq/',author:'空白星兮'},
-      {main:'妮露',team:'月绽放',comp:'妮露 / 菈乌玛 / 草系队友 / 水系队友',era:'old',url:'https://www.bilibili.com/video/BV1HRa6zSER9/',author:'这把我们就遇到高手'},
-      {main:'神里绫华',team:'冻结',comp:'神里绫华 / 队友配置见原片',era:'old',url:'https://www.bilibili.com/video/BV19vKizdEoa/',author:'凝渡_Du'},
-      {main:'神里绫人',team:'月感电',comp:'神里绫人 / 伊涅芙 / 队友配置见原片',era:'old',url:'https://www.bilibili.com/video/BV1CUtFzoEyT/',author:'煤球儿MEI'},
-      {main:'宵宫',team:'魔导',comp:'宵宫 / 队友配置见原片',era:'old',url:'https://www.bilibili.com/video/BV1Rv4nzPENN/',author:'烟花武装单推人'}
+      {main:'玛薇卡',team:'超载',comp:'玛薇卡 / 夏沃蕾 / 欧洛伦 / 伊安珊',dps:18.44,url:'https://www.bilibili.com/video/BV1g5Vh63EQS/',author:'夜星Wetchin',tags:[['角色 95 级','special']],detail:'原片 1 金配置；95 级成绩不能与 90 级直接等同'},
+      {main:'菲林斯',team:'月感电',comp:'菲林斯 / 伊涅芙 / 少女 / 砂糖',dps:17.4,url:'https://www.bilibili.com/video/BV1qx3J6jE7b/',author:'雾夕寒川',tags:[['锻造武器','']],detail:'原片标注严格 3 金；以视频配装与流程为准'},
+      {main:'玛拉妮',team:'魔导蒸发',comp:'玛拉妮 / 魔导队友配置见原片',url:'https://www.bilibili.com/video/BV1ArkwBHE2J/',author:'糖醋の排骨',detail:'原片有 120 秒冷启动数据，武器配置尚不足以确认全队合规'},
+      {main:'阿蕾奇诺',team:'融化',comp:'阿蕾奇诺 / 茜特菈莉 / 砂糖 / 班尼特',url:'https://www.bilibili.com/video/BV1PnFvzdE2u/',author:'listener021'},
+      {main:'那维莱特',team:'水伤',comp:'那维莱特 / 芙宁娜 / 希诺宁 / 欧洛伦',url:'https://www.bilibili.com/video/BV189d9B3E6h/',author:'克营这回永驻'},
+      {main:'克洛琳德',team:'魔导超载',comp:'克洛琳德 / 菲谢尔 / 夏沃蕾 / 杜林',url:'https://www.bilibili.com/video/BV17JFLzdEvX/',author:'发条橘儿'},
+      {main:'娜维娅',team:'结晶',comp:'娜维娅 / 队友配置见原片',url:'https://www.bilibili.com/video/BV1HNPBzMEU9/',author:'是剑影迷心吖'},
+      {main:'莱欧斯利',team:'星超导',comp:'莱欧斯利 / 队友配置见原片',url:'https://www.bilibili.com/video/BV1r9Mg6xEfk/',author:'浪客WAVE'},
+      {main:'林尼',team:'纯火',comp:'林尼 / 班尼特 / 香菱 / 风系队友',url:'https://www.bilibili.com/video/BV1A44y1F7JG/',author:'赫箩的苹果'},
+      {main:'嘉明',team:'下落蒸发',comp:'嘉明 / 闲云 / 芙宁娜 / 班尼特',url:'https://www.bilibili.com/video/BV195ttz9EsB/',author:'氢氧化氢芙',detail:'幽境实战视频，非木桩循环 DPS'},
+      {main:'恰斯卡',team:'多元素',comp:'恰斯卡 / 队友配置见原片',url:'https://www.bilibili.com/video/BV1WxB1YTEwt/',author:'冰糖小堃'},
+      {main:'基尼奇',team:'燃烧',comp:'基尼奇 / 队友配置见原片',url:'https://www.bilibili.com/video/BV1ckL46WEyu/',author:'炫耀快玩',detail:'原片含剧诗增益，相关成绩不计入'},
+      {main:'瓦蕾莎',team:'超载',comp:'瓦蕾莎 / 玛薇卡 / 夏沃蕾 / 伊安珊',url:'https://www.bilibili.com/video/BV1ymk7BaE7S/',author:'梦游远方2004'},
+      {main:'丝柯克',team:'冰水',comp:'丝柯克 / 爱可菲 / 芙宁娜 / 莫娜',url:'https://www.bilibili.com/video/BV1ymk7BaE7S/',author:'梦游远方2004'},
+      {main:'奈芙尔',team:'月绽放',comp:'奈芙尔 / 菈乌玛 / 少女 / 砂糖',url:'https://www.bilibili.com/video/BV1ymk7BaE7S/',author:'梦游远方2004'},
+      {main:'兹白',team:'月结晶',comp:'兹白 / 莉奈娅 / 少女 / 叶洛亚',url:'https://www.bilibili.com/video/BV1t6DHBAEcM/',author:'糖果味Ooo'},
+      {main:'少女',team:'月感电',comp:'少女 / 伊涅芙 / 砂糖 / 菲谢尔',url:'https://www.bilibili.com/video/BV1T2zyBMEbW/',author:'之猫neko',detail:'原片少女 2 命；视频仅供参考手法'},
+      {main:'木偶',team:'星超导',comp:'木偶 / 队友配置见原片',dps:10,display:'10+',url:'https://www.bilibili.com/video/BV1yYNs6sEF2/',author:'阿布relax丶',detail:'原作者标注严格 1 金、无隐金；10 万为下限'},
+      {main:'法尔伽',team:'魔导',comp:'法尔伽 / 队友配置见原片',url:'https://www.bilibili.com/video/BV1PPftBhEKk/',author:'夜尘明',tags:[['大月卡武器：精 5 螭骨剑','paid']],detail:'原作者明确注明使用精 5 螭骨剑'}
     ];
     const board=document.getElementById('board'),count=document.getElementById('count');
-    const search=document.getElementById('search'),sort=document.getElementById('sort'),era=document.getElementById('era');
+    const search=document.getElementById('search'),sort=document.getElementById('sort');
     document.getElementById('total').innerHTML=rows.length+'<span> 位主 C</span>';
     function render(){
       const query=search.value.trim().toLowerCase();
-      const selected=rows.filter(x=>(era.value==='all'||x.era===era.value)&&(x.main+' '+x.team+' '+x.comp+' '+x.author+' '+(x.tags||[]).map(t=>t[0]).join(' ')).toLowerCase().includes(query));
+      const selected=rows.filter(x=>(x.main+' '+x.team+' '+x.comp+' '+x.author+' '+(x.tags||[]).map(t=>t[0]).join(' ')).toLowerCase().includes(query));
       selected.sort((a,b)=>sort.value==='name'?a.main.localeCompare(b.main,'zh-CN'):(a.dps==null)-(b.dps==null)||(a.dps!=null&&b.dps!=null?(sort.value==='asc'?a.dps-b.dps:b.dps-a.dps):a.main.localeCompare(b.main,'zh-CN')));
       count.innerHTML='<strong>'+selected.length+'</strong> 位主 C · <strong>'+selected.filter(x=>x.dps!=null).length+'</strong> 条合口径成绩';
       board.replaceChildren();
@@ -84,6 +77,6 @@
         board.append(el)
       })
     }
-    [search,sort,era].forEach(el=>el.addEventListener(el===search?'input':'change',render));render();
+    [search,sort].forEach(el=>el.addEventListener(el===search?'input':'change',render));render();
   </script>
 </body></html>
