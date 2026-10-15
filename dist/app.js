@@ -149,7 +149,7 @@ modeButton.addEventListener('click',async()=>{
 passwordButton.addEventListener('click',()=>{passwordForm.reset();document.getElementById('passwordError').textContent='';passwordDialog.showModal()});
 for(const owner of ['editor','developer'])messageButtons[owner].addEventListener('click',()=>{
   editingMessage=owner;
-  document.getElementById('messageHeading').textContent=owner==='editor'?'编辑者寄语':'开发者致信寄语';
+  document.getElementById('messageHeading').textContent=owner==='editor'?'致读者的话':'致编辑的话';
   document.getElementById('messageText').value=messageFields[owner].textContent;
   document.getElementById('messageError').textContent='';
   messageDialog.showModal();
