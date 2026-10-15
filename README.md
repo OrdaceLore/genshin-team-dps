@@ -10,6 +10,14 @@ python3 -m http.server 8765 --directory dist
 
 ## 部署
 
-静态文件位于 `dist/`。Cloudflare Pages 的构建命令留空，输出目录设置为 `dist`。
+静态文件位于 `dist/`。当前 Pages 项目采用 Wrangler Direct Upload，发布命令：
+
+```sh
+wrangler pages deploy dist --project-name genshin-team-dps --branch main
+```
+
+GitHub 仓库用于保存源代码；推送代码后需运行上面的命令更新线上站点。
 
 正式域名：`genshin.standard.team.damage.efficientsystem.org`。
+
+该域名已关联 Pages 项目。DNS 中还需添加 CNAME：名称 `genshin.standard.team.damage`，目标 `genshin-team-dps-btu.pages.dev`（在 `efficientsystem.org` 区域内）。
