@@ -1,6 +1,12 @@
-# 原神标准队伍 DPS 视频榜
+# 原神标准队伍DPS排行
 
-枫丹及之后的幽境危战常见主 C 队伍 B 站视频索引。每位主 C 只列一支队伍；全队五星角色必须零命，不能携带五星武器，四星命座不限。四星纪行武器可用，但会单独标注。DPS 为视频作者标称值，未逐项核实的配装只供暂时参考。榜单支持按 DPS 或主 C 的首次实装日期排序。
+收录有视频来源的高 DPS 主 C，范围覆盖原神全部角色。每位主 C 列一支队伍；五星角色均为零命，全队不能携带五星武器，四星命座不限。公开榜单仅显示已填写 DPS 和 B 站原视频链接的条目，支持按 DPS 或角色首次发布时间排序。
+
+## 编辑
+
+右上角进入编辑模式后，可以修改角色资料、DPS、原视频和“编辑者寄语”，也可以新增角色。开发者模式还可冻结角色编辑、修改编辑模式密码，以及修改“开发者致信寄语”。改动保存在 Cloudflare D1，对所有访客生效。生产密码存放在 Cloudflare Pages Secrets，不在仓库中。
+
+角色初始资料在 `dist/app.js`；在线修改覆盖初始资料。公开榜单暂不显示缺少 DPS 或原视频链接的初始条目，编辑模式仍可补全。
 
 ## 本地预览
 
@@ -8,16 +14,14 @@
 python3 -m http.server 8765 --directory dist
 ```
 
+这种静态预览只展示初始资料；编辑接口需要 Pages Functions 和 D1。数据库结构见 `schema.sql`，绑定见 `wrangler.jsonc`。
+
 ## 部署
 
-静态文件位于 `dist/`。当前 Pages 项目采用 Wrangler Direct Upload，发布命令：
+项目使用 Cloudflare Pages Direct Upload。推送 GitHub 保存源代码后，运行：
 
 ```sh
 wrangler pages deploy dist --project-name genshin-team-dps --branch main
 ```
 
-GitHub 仓库用于保存源代码；推送代码后需运行上面的命令更新线上站点。
-
-正式域名：`dps.efficientsystem.org`。
-
-该域名已关联 Pages 项目。DNS 中的 CNAME `dps` 指向 `genshin-team-dps-btu.pages.dev`（在 `efficientsystem.org` 区域内）。
+正式域名：https://dps.efficientsystem.org/ 。修改 `dist/app.js` 后，请同步更新 `dist/index.html` 中的脚本版本参数，避免浏览器继续使用旧脚本。

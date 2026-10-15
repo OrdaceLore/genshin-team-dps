@@ -1,0 +1,12 @@
+{
+  "name": "genshin-team-dps",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-10-14",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "genshin-team-dps",
+      "database_id": "32a4aa3a-7763-4842-a587-109e3ae14551"
+    }
+  ]
+}
