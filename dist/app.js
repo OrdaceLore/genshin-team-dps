@@ -1,5 +1,5 @@
     const rows=[
-      {main:'玛薇卡',released:'2025-01-01',team:'超载',comp:'玛薇卡 / 夏沃蕾 / 欧洛伦 / 伊安珊',dps:18.44,url:'https://www.bilibili.com/video/BV1g5Vh63EQS/',author:'夜星Wetchin',tags:[['角色 95 级','special']],detail:'原片 95 级；补充视频标称 120 秒 17 万 DPS',otherVideos:[['那塔战舰 17 万 DPS','https://www.bilibili.com/video/BV1sVkgBkEot/']]},
+      {main:'玛薇卡',released:'2025-01-01',team:'超载',comp:'玛薇卡 / 夏沃蕾 / 欧洛伦 / 伊安珊',dps:18.44,url:'https://www.bilibili.com/video/BV1g5Vh63EQS/',author:'夜星Wetchin',tags:[['角色 95 级','special']],detail:'原片 95 级'},
       {main:'菲林斯',released:'2025-09-30',team:'月感电',comp:'菲林斯 / 队友配置见原片',dps:19,url:'https://www.bilibili.com/video/BV1HRt163Ef8/',author:'米酒Yahalo',detail:'作者标称全 0+0、冷启动、无剧诗增益'},
       {main:'玛拉妮',released:'2024-08-28',team:'魔导',comp:'玛拉妮 / 队友配置见原片',dps:11,url:'https://www.bilibili.com/video/BV1vrg96gEoZ/',author:'她说玫瑰玫瑰头香',detail:'作者标称限定 1 金；命座和武器以原片为准'},
       {main:'阿蕾奇诺',released:'2024-04-24',team:'融化',comp:'阿蕾奇诺 / 茜特菈莉 / 砂糖 / 班尼特',author:''},
@@ -14,9 +14,9 @@
       {main:'瓦蕾莎',released:'2025-03-26',team:'下落',comp:'瓦蕾莎 / 队友配置见原片',dps:12.2,url:'https://www.bilibili.com/video/BV15VYo6iEqp/',author:'羊套橘子',detail:'作者标称严格 0 限定金；需双西风'},
       {main:'丝柯克',released:'2025-06-18',team:'冰水',comp:'丝柯克 / 爱可菲 / 沃雅妮莎 / 芙宁娜',url:'https://www.bilibili.com/video/BV1PBHR6HEER/',author:'枫声松松',detail:'作者标称全 0+0、无隐金；移动端 60 帧实战'},
       {main:'奈芙尔',released:'2025-10-22',team:'月绽放',comp:'奈芙尔 / 菈乌玛 / 少女 / 队友配置见原片',dps:19.3,url:'https://www.bilibili.com/video/BV1ZCXDB6EZZ/',author:'梦翼yi',detail:'作者标称 3 金、冷启动 120 秒；命座和武器以原片为准'},
-      {main:'兹白',released:'2026-02-03',team:'月结晶',comp:'兹白 / 莉奈娅 / 少女 / 队友配置见原片',dps:22.9,url:'https://www.bilibili.com/video/BV1JGbB6SE6y/',author:'米酒Yahalo',tags:[['锻造武器','']],detail:'作者标称严格 3 金、冷启动；另一原片提供 0 能量 120 秒成绩与第二 P 面板',otherVideos:[['19 万 DPS 流程','https://www.bilibili.com/video/BV1Xeet6pEse/'],['该视频第二 P 面板','https://www.bilibili.com/video/BV1Xeet6pEse/?p=2']]},
+      {main:'兹白',released:'2026-02-03',team:'月结晶',comp:'兹白 / 莉奈娅 / 少女 / 队友配置见原片',dps:22.9,url:'https://www.bilibili.com/video/BV1JGbB6SE6y/',author:'米酒Yahalo',tags:[['锻造武器','']],detail:'作者标称严格 3 金、冷启动'},
       {main:'木偶',released:'2026-07-01',team:'星超导',comp:'木偶 / 队友配置见原片',dps:23.4,url:'https://www.bilibili.com/video/BV1MUpz6pEob/',author:'最ニ网管',tags:[['精 4 新枝','special']],detail:'作者标称严格 2 金、官方 60 帧；视频说明称木偶 65% 暴击率下全暴击'},
-      {main:'法尔伽',released:'2026-02-25',team:'魔导',comp:'法尔伽 / 队友配置见原片',dps:20.13,url:'https://www.bilibili.com/video/BV16FtW6BEJb/?p=2',author:'氪星难民',tags:[['大月卡武器：螭骨剑','paid']],detail:'仅采用视频第二 P 的严格 3 金成绩；第一 P 涉及五星专武，不计入',otherVideos:[['限定 1 金对比视频','https://www.bilibili.com/video/BV1etfaB8ER5/']]},
+      {main:'法尔伽',released:'2026-02-25',team:'魔导',comp:'法尔伽 / 队友配置见原片',dps:20.13,url:'https://www.bilibili.com/video/BV16FtW6BEJb/?p=2',author:'氪星难民',tags:[['大月卡武器：螭骨剑','paid']],detail:'仅采用视频第二 P 的严格 3 金成绩；第一 P 涉及五星专武，不计入'},
       {main:'薇斯纳',released:'2026-09-23',team:'队伍见原片',comp:'薇斯纳 / 队友配置见原片',dps:22.65,url:'https://www.bilibili.com/video/BV1KKaP6qExn/',author:'荷欢欢',detail:'作者标称 3 金、60 帧纯绿；命座和武器以原片为准'},
       {main:'洛恩',released:'2026-06-09',team:'队伍见原片',comp:'洛恩 / 尼可 / 杜林 / 奶奶',dps:13.1,url:'https://www.bilibili.com/video/BV1VJEm66Ekz/?p=1',author:'粑重神子Tatsumaki',tags:[['大月卡武器：决斗之枪、狼牙','paid']],detail:'仅采用视频第一 P 的严格 4 金成绩；第二 P 有五星专武，不计入'}
     ];
@@ -40,7 +40,7 @@ function baseData(x){
     dps:x.dps??null,url:x.url||''};
 }
 function current(x){return {...baseData(x),...(overlays.get(x.main)?.data||{}),id:x.main,
-  frozen:Boolean(overlays.get(x.main)?.frozen),otherVideos:x.otherVideos||[]};}
+  frozen:Boolean(overlays.get(x.main)?.frozen)};}
 function tagClass(tag){return tag.includes('大月卡')||tag.includes('纪行')?'paid':
   tag.includes('级')||tag.includes('精 ') ?'special':'';}
 function canEdit(x){return Boolean(role)&&(!x.frozen||role==='developer');}
@@ -151,7 +151,7 @@ function render(){
   const max=Math.max(...selected.map(x=>x.dps||0),1);let ranked=0;
   selected.forEach((x,index)=>{
     const el=document.createElement('article');el.className='row';
-    el.innerHTML='<div class="rank"></div><div class="primary"><div class="team"></div><div class="subtitle"></div><div class="details"><div class="tags"></div><div class="note"></div><div class="extras"></div><div class="manage"></div></div></div><div class="valuebox"><div class="value"></div><div class="bar"><i></i></div></div><div class="video-group"></div>';
+    el.innerHTML='<div class="rank"></div><div class="primary"><div class="team"></div><div class="subtitle"></div><div class="details"><div class="tags"></div><div class="note"></div><div class="manage"></div></div></div><div class="valuebox"><div class="value"></div><div class="bar"><i></i></div></div><div class="video-group"></div>';
     const rank=el.querySelector('.rank');
     if(sort.value==='release')rank.textContent=String(index+1).padStart(2,'0');
     else if(x.dps!=null){rank.textContent=String(++ranked).padStart(2,'0');if(ranked<=3)rank.classList.add('top3')}
@@ -188,8 +188,6 @@ function render(){
     if((x.author||canEdit(x))&&(x.detail||canEdit(x)))note.append(' · ');
     if(x.detail||canEdit(x))note.append(inlineField(x,'detail','文字备注',x.detail,x.detail,
       {placeholder:'+ 备注',maxLength:600,multiline:true}));
-    const extras=el.querySelector('.extras');
-    x.otherVideos.forEach(([label,url])=>{const link=document.createElement('a');link.href=url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=label+' ↗';extras.append(link)});
     const value=el.querySelector('.value'),bar=el.querySelector('.bar');
     if(x.dps!=null){
       value.append(inlineField(x,'dps','DPS',x.dps.toFixed(2).replace(/0$/,''),String(x.dps),
