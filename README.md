@@ -20,4 +20,4 @@ GitHub 仓库用于保存源代码；推送代码后需运行上面的命令更�
 
 正式域名：`dps.efficientsystem.org`。
 
-该域名已关联 Pages 项目。DNS 中还需添加 CNAME：名称 `dps`，目标 `genshin-team-dps-btu.pages.dev`（在 `efficientsystem.org` 区域内）。
+该域名已关联 Pages 项目。DNS 中的 CNAME `dps` 指向 `genshin-team-dps-btu.pages.dev`（在 `efficientsystem.org` 区域内）。
